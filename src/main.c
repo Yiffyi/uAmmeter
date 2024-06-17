@@ -23,10 +23,11 @@ int main()
 
     while (1)
     {
-        HAL_Delay(1000);
+        HAL_Delay(700);
+        ToSerialStudio();
         // write("Main loop\n\r");
-        PullEADCValue();
-        PullIADCValue();
+        // PullEADCValue();
+        // PullIADCValue();
     }
     return 0;
 }

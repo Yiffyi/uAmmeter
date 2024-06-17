@@ -5,6 +5,7 @@
 #define MCP_Addr_Read 0xD1
 
 uint8_t eadcBuffer[4];
+float EADC0 = 0;
 
 void StartExternalADC()
 {
@@ -22,9 +23,9 @@ float PullEADCValue()
 {
 	HAL_I2C_Master_Receive(&hi2c1, MCP_Addr_Read, eadcBuffer, 4, HAL_MAX_DELAY);
 	uint32_t x = (uint32_t) eadcBuffer[0] << 16 | (uint32_t) eadcBuffer[1] << 8 | (uint32_t) eadcBuffer[2];
-	float out = EADCValue(x);
-	static char buffer[128];
-	sprintf(buffer, "MCP: raw:%ld, float:%.6f mV\n\r", x, out);
-	write(buffer);
-	return out;
+	EADC0 = EADCValue(x);
+	// static char buffer[128];
+	// sprintf(buffer, "MCP: raw:%ld, float:%.6f mV\n\r", x, out);
+	// write(buffer);
+	return EADC0;
 }

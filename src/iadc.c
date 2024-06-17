@@ -3,6 +3,7 @@
 
 uint16_t iadcBuffer[256], nSamples = 128;
 uint32_t sumIn5 = 0, sumIn4 = 0;
+float IADC5 = 0, IADC4 = 0;
 
 void StartInternalADC()
 {
@@ -36,9 +37,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 
 float PullIADCValue()
 {
-    float in5 = IADCValue(sumIn5) / nSamples, in4 = IADCValue(sumIn4) / nSamples;
-    static char buffer[128];
-    sprintf(buffer, "ADC1: in4=%.4f mV, in5=%.4f mV\n\r", in4, in5);
-    write(buffer);
-    return in4;
+    IADC5 = IADCValue(sumIn5) / nSamples;
+    IADC4 = IADCValue(sumIn4) / nSamples;
+    // static char buffer[128];
+    // sprintf(buffer, "ADC1: in4=%.4f mV, in5=%.4f mV\n\r", in4, in5);
+    // write(buffer);
+    return IADC4;
 }

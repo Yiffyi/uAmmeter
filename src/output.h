@@ -2,5 +2,6 @@
 #define _OUTPUT_H_ 1
 #include <stdio.h>
 
-void write(char s[]);
+void W(char s[]);
+void ToSerialStudio();
 #endif
